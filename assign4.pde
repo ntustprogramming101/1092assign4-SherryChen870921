@@ -20,8 +20,9 @@ final int START_BUTTON_HEIGHT = 60;
 final int START_BUTTON_X = 248;
 final int START_BUTTON_Y = 360;
 
-float[] cabbageX, cabbageY, soldierX, soldierY;
-float soldierSpeed = 2f;
+int cabbageY;
+int cabbageX,cabbageaX,cabbagebX,cabbagecX,cabbagedX,cabbageeX;
+int soldierSpeed = 4;
 
 float playerX, playerY;
 int playerCol, playerRow;
@@ -40,6 +41,15 @@ int soilEmptygX,soilEmptyhX,soilEmptyiX,soilEmptyjX,soilEmptykX,soilEmptylX,soil
 int soilEmptynX,soilEmptyoX,soilEmptypX,soilEmptyqX,soilEmptyrX,soilEmptysX,soilEmptytX;
 int soilEmptyuX,soilEmptyvX;
 int soilEmptyY;
+
+int soldierX = floor(random(0,8))*80;;
+int soldierY = floor(random(0,4))*80;
+int soldieraY = floor(random(5,8))*80;
+int soldierbY = floor(random(9,12))*80;
+int soldiercY = floor(random(13,16))*80;
+int soldierdY = floor(random(17,20))*80;
+int soldiereY = floor(random(21,24))*80;
+int soldierWidth = 80;
 
 
 boolean demoMode = false;
@@ -159,7 +169,16 @@ void setup() {
 
 	// Initialize soidiers and their position
 
-	// Initialize cabbages and their position
+	// cabbages position
+   cabbageX = floor(random(0,8))*80; //1
+   cabbageaX = floor(random(0,8))*80; //2
+   cabbagebX = floor(random(0,8))*80; //3
+   cabbagecX = floor(random(0,8))*80; //4
+   cabbagedX = floor(random(0,8))*80; //5
+   cabbageeX = floor(random(0,8))*80; //6
+   cabbageY = 80;
+
+
 
 }
 
@@ -299,6 +318,29 @@ void draw() {
 
 		// Cabbages
 		// > Remember to check if playerHealth is smaller than PLAYER_MAX_HEALTH!
+    for(int i=0; i<4; i+=4){
+    image(cabbage,cabbageX,cabbageY*i);
+    image(cabbage,cabbageaX,cabbageY*i+320);
+    image(cabbage,cabbagebX,cabbageY*i+640);
+    image(cabbage,cabbagecX,cabbageY*i+960);
+    image(cabbage,cabbagedX,cabbageY*i+1280);
+    image(cabbage,cabbageeX,cabbageY*i+1600);
+    }
+    
+     //soldier-1
+      image(soldier,soldierX,soldierY);
+     //soldier-2
+      image(soldier,soldierX,soldieraY);
+     //soldier-3
+      image(soldier,soldierX,soldierbY);
+     //soldier-4
+      image(soldier,soldierX,soldiercY);
+     //soldier-5
+      image(soldier,soldierX,soldierdY);
+      //soldier-6
+      image(soldier,soldierX,soldiereY);
+      soldierX = soldierX + soldierSpeed;
+      soldierX %= width;
 
 		// Groundhog
 
