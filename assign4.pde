@@ -35,6 +35,12 @@ final int PLAYER_MAX_HEALTH = 5;
 int playerMoveDirection = 0;
 int playerMoveTimer = 0;
 int playerMoveDuration = 15;
+int soilEmptyX,soilEmptyaX,soilEmptybX,soilEmptycX,soilEmptydX,soilEmptyeX,soilEmptyfX;
+int soilEmptygX,soilEmptyhX,soilEmptyiX,soilEmptyjX,soilEmptykX,soilEmptylX,soilEmptymX;
+int soilEmptynX,soilEmptyoX,soilEmptypX,soilEmptyqX,soilEmptyrX,soilEmptysX,soilEmptytX;
+int soilEmptyuX,soilEmptyvX;
+int soilEmptyY;
+
 
 boolean demoMode = false;
 
@@ -64,6 +70,10 @@ void setup() {
 	soil3 = loadImage("img/soil3.png");
 	soil4 = loadImage("img/soil4.png");
 	soil5 = loadImage("img/soil5.png");
+
+  //load stone
+  stone1 = loadImage("img/stone1.png");
+  stone2 = loadImage("img/stone2.png");
 
 	// Load PImage[][] soils
 	soils = new PImage[6][5];
@@ -95,8 +105,57 @@ void setup() {
 		for (int j = 0; j < soilHealth[i].length; j++) {
 			 // 0: no soil, 15: soil only, 30: 1 stone, 45: 2 stones
 			soilHealth[i][j] = 15;
-		}
+
+    //stone 1-8
+    if((i==0 && j==0 || i==1 && j==1 || i==2 && j==2 || i==3 && j==3)
+    ||(i==4 && j==4 || i==5 && j==5 || i==6 && j==6 || i==7 && j==7)
+    
+    //stone 9-16
+    ||(i==0||i==3||i==4||i==7)&&(j==9||j==10||j==13||j==14)
+    ||(i==1||i==2||i==5||i==6)&&(j==8||j==11||j==12||j==15)
+    
+    //stone 17-24
+    ||(i==1||i==4||i==7)&&(j==16||j==19||j==22)
+    ||(i==0||i==3||i==6)&&(j==17||j==20||j==23)
+    ||(i==2||i==5)&&(j==18||j==21)){
+      soilHealth[i][j] = 30;
+    
+    //stone2 17-24
+     }else if((i==2||i==5)&&(j==16||j==19||j==22)
+     ||(i==1||i==4||i==7)&&(j==17||j==20||j==23)
+     ||(i==0||i==3||i==6)&&(j==18||j==21)){
+     soilHealth[i][j] = 45;
+     }
+	 }
 	}
+
+    //empty soil
+    soilEmptyX = floor(random(0,8))*80; //1
+    soilEmptyaX = floor(random(0,8))*80;//2
+    soilEmptybX = floor(random(0,8))*80;//3
+    soilEmptycX = floor(random(0,8))*80;//4
+    soilEmptydX = floor(random(0,8))*80;//5
+    soilEmptyeX = floor(random(0,8))*80;//6
+    soilEmptyfX = floor(random(0,8))*80;//7
+    soilEmptygX = floor(random(0,8))*80;//8
+    soilEmptyhX = floor(random(0,8))*80;//9
+    soilEmptyiX = floor(random(0,8))*80;//10
+    soilEmptyjX = floor(random(0,8))*80;//11
+    soilEmptykX = floor(random(0,8))*80;//12
+    soilEmptylX = floor(random(0,8))*80;//13
+    soilEmptymX = floor(random(0,8))*80;//14
+    soilEmptynX = floor(random(0,8))*80;//15
+    soilEmptyoX = floor(random(0,8))*80;//16
+    soilEmptypX = floor(random(0,8))*80;//17
+    soilEmptyqX = floor(random(0,8))*80;//18
+    soilEmptyrX = floor(random(0,8))*80;//19
+    soilEmptysX = floor(random(0,8))*80;//20
+    soilEmptytX = floor(random(0,8))*80;//21
+    soilEmptyuX = floor(random(0,8))*80;//22
+    soilEmptyvX = floor(random(0,8))*80;//23
+    
+    soilEmptyY = 80;
+  
 
 	// Initialize soidiers and their position
 
@@ -145,13 +204,11 @@ void draw() {
 		translate(0, max(SOIL_SIZE * -18, SOIL_SIZE * 1 - playerY));
 
 		// Ground
-
 		fill(124, 204, 25);
 		noStroke();
 		rect(0, -GRASS_HEIGHT, width, GRASS_HEIGHT);
 
 		// Soil
-
 		for(int i = 0; i < soilHealth.length; i++){
 			for (int j = 0; j < soilHealth[i].length; j++) {
 
@@ -162,6 +219,83 @@ void draw() {
 				
 			}
 		}
+    //empty soil
+    
+    for(int i=1; i<3; i++){
+        image(soilEmpty, soilEmptyX*i, soilEmptyY);//1
+        image(soilEmpty, soilEmptyaX*i, soilEmptyY+80);//2
+        image(soilEmpty, soilEmptybX*i, soilEmptyY+160);//3
+        image(soilEmpty, soilEmptycX*i, soilEmptyY+240);//4
+        image(soilEmpty, soilEmptydX*i, soilEmptyY+320);//5
+        image(soilEmpty, soilEmptyeX*i, soilEmptyY+400);//6
+        image(soilEmpty, soilEmptyfX*i, soilEmptyY+480);//7
+        image(soilEmpty, soilEmptygX*i, soilEmptyY+560);//8
+        image(soilEmpty, soilEmptyhX*i, soilEmptyY+640);//9
+        image(soilEmpty, soilEmptyiX*i, soilEmptyY+720);//10
+        image(soilEmpty, soilEmptyjX*i, soilEmptyY+800);//11
+        image(soilEmpty, soilEmptykX*i, soilEmptyY+880);//12
+        image(soilEmpty, soilEmptylX*i, soilEmptyY+960);//13
+        image(soilEmpty, soilEmptymX*i, soilEmptyY+1040);//14
+        image(soilEmpty, soilEmptynX*i, soilEmptyY+1120);//15
+        image(soilEmpty, soilEmptyoX*i, soilEmptyY+1200);//16
+        image(soilEmpty, soilEmptypX*i, soilEmptyY+1280);//17
+        image(soilEmpty, soilEmptyqX*i, soilEmptyY+1360);//18
+        image(soilEmpty, soilEmptyrX*i, soilEmptyY+1440);//19
+        image(soilEmpty, soilEmptysX*i, soilEmptyY+1520);//20
+        image(soilEmpty, soilEmptytX*i, soilEmptyY+1600);//21
+        image(soilEmpty, soilEmptyuX*i, soilEmptyY+1680);//22
+        image(soilEmpty, soilEmptyvX*i, soilEmptyY+1760);//23
+     }
+
+    //all stones
+    //stone 1-8
+    for(int i = 0; i < 8; i++){
+      image(stone1, i*80, i*80);
+    }
+    //stone 9-16
+    for(int i = 0; i < 8; i++){
+      for(int j = 0; j < 8; j++){
+        if((i==0||i==3||i==4||i==7)
+        && (j==1||j==2||j==5||j==6)){
+        image(stone1, i*80, j*80+640);
+        }else if((i==1||i==2||i==5||i==6)
+        && (j==0||j==3||j==4||j==7)){
+        image(stone1, i*80, j*80+640);
+        }
+      }
+    }
+    //stone 17-24
+    for(int x = 0; x < 8; x++){
+      for(int y = 0; y < 8; y++){
+        if((x==0||x==3||x==6)
+        && (y==1||y==2||y==4||y==5||y==7)){
+        image(stone1, x*80, y*80+640+640);
+        }else if((x==1||x==4||x==7)
+        && (y==0||y==1||y==3||y==4||y==6||y==7)){
+        image(stone1, x*80, y*80+640+640);
+        }else if((x==2||x==5)
+        && (y==0||y==2||y==3||y==5||y==6)){
+        image(stone1, x*80, y*80+640+640);
+        }
+      }
+    }
+    //stone 17-24
+    for(int x = 0; x < 8; x++){
+      for(int y = 0; y < 8; y++){
+        if((x==0||x==3||x==6)
+        && (y==2||y==5)){
+        image(stone2, x*80, y*80+640+640);
+        }else if((x==1||x==4||x==7)
+        && (y==1||y==4||y==7)){
+        image(stone2, x*80, y*80+640+640);
+        }else if((x==2||x==5)
+        && (y==0||y==3||y==6)){
+        image(stone2, x*80, y*80+640+640);
+        }
+      }
+    }
+
+
 
 		// Cabbages
 		// > Remember to check if playerHealth is smaller than PLAYER_MAX_HEALTH!
@@ -341,6 +475,8 @@ void draw() {
 						 // 0: no soil, 15: soil only, 30: 1 stone, 45: 2 stones
 						soilHealth[i][j] = 15;
 					}
+       //soil array
+
 				}
 
 				// Initialize soidiers and their position
